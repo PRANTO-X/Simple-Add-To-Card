@@ -1,0 +1,138 @@
+
+@media (max-width: 1200px) {
+    .cart-empty, .cart-fill {
+        padding: 15px 20px;
+    }
+
+    .cart-header {
+        font-size: 18px;
+    }
+
+    .total-order, .complete-order p {
+        font-size: 16px;
+    }
+
+    .confirm-btn, .main-btn {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .container-lg {
+        padding: 0 15px;
+    }
+
+    .products {
+        margin-bottom: 30px;
+    }
+
+    .cart-header {
+        font-size: 16px;
+    }
+
+    .cart-body p {
+        font-size: 12px;
+    }
+
+    .total-order, .complete-order p {
+        font-size: 14px;
+    }
+
+    .confirm-btn, .main-btn {
+        font-size: 15px;
+        padding: 9px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .products, .cart-empty, .cart-fill {
+        width: 100%;
+    }
+
+    .cart-header {
+        font-size: 15px;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .cart-body {
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .confirm-cart {
+        width: 90%;
+        padding: 20px 15px;
+    }
+
+    
+}
+
+@media (max-width: 576px) {
+    .product-body button {
+        width: 160px;
+        padding: 8px 20px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .quantity-controls {
+        justify-content: space-between;
+        gap: 20px;
+        font-size: 12px;
+    }
+
+    .cart-header {
+        font-size: 14px;
+    }
+
+    .item-name {
+        font-size: 14px;
+    }
+
+    .item-quantity {
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    .confirm-btn, .main-btn {
+        font-size: 14px;
+        padding: 8px 0;
+    }
+
+    .carbon-neutral {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 375px) {
+    .confirm-cart {
+        gap: 10px;
+    }
+
+    .confirm-header h2 {
+        font-size: 22px;
+    }
+
+    .confirm-header p {
+        font-size: 12px;
+    }
+
+    .cart-header {
+        font-size: 13px;
+    }
+
+    .total-order, .complete-order p {
+        font-size: 12px;
+    }
+
+    .total-order, .complete-order h3 {
+        font-size: 16px;
+    }
+
+}
