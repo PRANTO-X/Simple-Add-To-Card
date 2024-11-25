@@ -69,7 +69,8 @@ const updateCart = () => {
     if (cart.length > 0) {
         cartEmpty.classList.add('d-none');
         cartFill.classList.remove('d-none')
-        cartHeader.textContent = `Your Cart (${cart.length})`;
+        const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+        cartHeader.textContent = `Your Cart (${totalQuantity})`;
       
         cartList.innerHTML = '';
         
@@ -198,17 +199,24 @@ confirmBtn.addEventListener('click',()=>{
     confirmContent.innerHTML='';
     
     cart.forEach(item=>{
-        let cartItemQuantity = document.createElement('div');
-        cartItemQuantity.classList.add('cart-item-quantity');
-        cartItemQuantity.innerHTML=`
-            <div class="item-name">${item.name}</div>
-                <div class="item-quantity">
-                    <span>${item.quantity}x</span>
-                    <span>@$${item.price.toFixed(2)}</span>
-                    <span>$${(item.quantity * item.price).toFixed(2)}</span>   
-                </div>
+        let cartItemContent = document.createElement('div');
+        cartItemContent.classList.add('cart-item-content');
+        cartItemContent.innerHTML=`
+             <img src="${item.image.thumbnail}" class="img-fluid" alt="">
+            <div class="cart-item-quantity">
+                <div class="item-name">${item.name}</div>
+                    <div class="item-quantity">
+                        <div class="item-quantity-price">
+                            <span>${item.quantity}x</span>
+                            <span>@$${item.price.toFixed(2)}</span>
+                        </div>
+                        <div class="total-price">
+                         <span>$${(item.quantity * item.price).toFixed(2)}</span> 
+                         </div>  
+                    </div>
+            </div>
         `;
-        confirmContent.appendChild(cartItemQuantity);
+        confirmContent.appendChild(cartItemContent);
     });
 
     let completeOrder = confirmCart.querySelector('.complete-order h3');

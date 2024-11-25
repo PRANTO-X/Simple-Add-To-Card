@@ -177,6 +177,7 @@ body{
     display: flex;
     gap: 20px;
     font-size: 16px;
+    width: 100%;
 }
 .item-quantity span:nth-child(1){
     color: var(--Red);
@@ -275,17 +276,35 @@ body{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    max-height: 400px;
 }
 
-.confirm-content .item-quantity {
-    border-bottom: 1px solid var(--Rose-100);
-    width: 100%;
+.cart-item-content{
+    display: flex;
+   gap: 20px;
+   align-items: center;
+   border-bottom: 1px solid var(--Rose-100);
 }
 
-.confirm-content .item-quantity span:last-child{
-    margin-left: auto;
+
+.cart-item-quantity{
+    flex: 1;
 }
 
+.cart-item-content  .cart-item-quantity .item-quantity{
+    justify-content: space-between; 
+}
+
+.total-price span{
+    color: var(--Rose-500) !important;
+}
+
+.cart-item-content img{
+    border-radius: 15px;
+    margin-bottom: 12px;
+}
 
 .confirm-header h2{
     color: var(--Rose-900);

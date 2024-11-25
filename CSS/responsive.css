@@ -122,7 +122,10 @@
     .confirm-header p {
         font-size: 12px;
     }
-
+    
+    .confirm-content{
+    max-height: 250px;
+    }
     .cart-header {
         font-size: 13px;
     }
