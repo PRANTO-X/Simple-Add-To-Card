@@ -34,12 +34,20 @@ products.forEach(product=>{
 });
 
 
-const removeItem = (index)=>{
-   let removedItem = cart[index];
-   cart.splice(index,1);
-   resetBtn(removedItem.name);
-   updateCart();
-}
+const removeItem = (index) => {
+    const cartItems = document.querySelectorAll('.cart-item'); 
+    const removedItem = cartItems[index]; 
+    removedItem.classList.add('slide-out'); 
+
+    resetBtn(cart[index].name);
+
+    removedItem.addEventListener('animationend', () => {
+        removedItem.remove(); 
+        cart.splice(index, 1); 
+        updateCart();
+    });
+};
+
 
 const resetBtn = (removedItemName)=>{
     addBtns.forEach((button)=>{
@@ -78,9 +86,14 @@ const updateCart = () => {
         cart.forEach((item, index) => {
             const cartItem = document.createElement('div');
             cartItem.classList.add('cart-item');
-
-          
+            
             const totalPrice = (item.price * item.quantity).toFixed(2);
+
+            if (item.isNew) {
+                cartItem.classList.add('new-item');
+            }
+        
+            item.isNew = false;
 
             cartItem.innerHTML = `
                 <div class="cart-item-quantity">
@@ -97,9 +110,11 @@ const updateCart = () => {
                     </svg>
                 </button>
             `;
-
+            
             cartList.appendChild(cartItem);
         });
+        
+
         const totalOrder = cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
         document.querySelector(".total-order h3").textContent = `$${totalOrder}`;
         cartFooter.style.display = 'block';
@@ -130,7 +145,7 @@ let addBtns=document.querySelectorAll(".add-btn");
         const product=products[index];
         const existingProduct=cart.find(item=>item.name===product.name);
         if(!existingProduct){
-            cart.push({...product,quantity:1});
+            cart.push({...product,quantity:1,isNew:true});
             updateCart();
         }
 
@@ -194,7 +209,8 @@ let confirmBtn = document.querySelector('.confirm-btn');
 
 confirmBtn.addEventListener('click',()=>{
     let confirmCart=document.querySelector('.confirm-cart');
-    confirmCart.classList.remove('d-none');
+    confirmCart.classList.remove('d-none','slide-bottom');
+    confirmCart.classList.add('slide-up');
     let confirmContent= confirmCart.querySelector('.confirm-content');
     confirmContent.innerHTML='';
     
@@ -252,7 +268,8 @@ document.querySelector('.new-order-btn').addEventListener('click', () => {
     cartFill.classList.add('d-none');
 
     let confirmCart = document.querySelector('.confirm-cart');
-    confirmCart.classList.add('d-none');
+    confirmCart.classList.remove('slide-up')
+    confirmCart.classList.add('slide-bottom');
 
     let confirmContent = confirmCart.querySelector('.confirm-content');
     confirmContent.innerHTML = '';
